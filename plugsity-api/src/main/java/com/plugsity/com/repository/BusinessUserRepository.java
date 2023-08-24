@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface BusinessUserRepository extends JpaRepository<BusinessUser, Long>{
 	
-	List<BusinessUser> findByBusinessNameAndEmail(String name, String brand);
+	List<BusinessUser> findByBusinessNameOrEmail(String name, String brand);
 
 }
