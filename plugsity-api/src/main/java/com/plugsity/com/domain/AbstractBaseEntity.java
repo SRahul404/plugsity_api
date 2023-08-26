@@ -35,10 +35,10 @@ public class AbstractBaseEntity {
 	@CreationTimestamp
 	private Date updatedTime;
 	
-	@Column(name = "Created_By")
+	@Column(name = "Created_By",nullable=false)
 	private String createdBy;
 	
-	@Column(name = "Updated_By")
+	@Column(name = "Updated_By",nullable=false)
 	private String updatedBy;
 	
 	public long getId() {

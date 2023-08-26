@@ -7,17 +7,14 @@ import javax.persistence.Table;
 import com.plugsity.com.domain.AbstractBaseEntity;
 
 @Entity
-@Table(name = "business")
-public class BusinessUser extends AbstractBaseEntity{
+@Table(name = "business_invite")
+public class BusinessUserInvite extends AbstractBaseEntity{
 
-	@Column(name = "FirstName",nullable=false)
-	private String fristName;
-	
-	@Column(name = "LastName",nullable=false)
-	private String lastName;
-	
 	@Column(name = "BusinessName",nullable=false)
 	private String businessName;
+	
+	@Column(name = "Website",nullable=false)
+	private String website;
 	
 	@Column(name = "Email",nullable=false)
 	private String email;
@@ -25,27 +22,17 @@ public class BusinessUser extends AbstractBaseEntity{
 	@Column(name = "PhoneNumber",nullable=false)
 	private String phoneNumber;
 	
-	@Column(name = "Message")
-	private String message;
+	@Column(name = "Address")
+	private String address;
+	
+	@Column(name = "SocialMedia")
+	private String socialMedia;
 	
 	@Column(name = "Token",nullable=false)
 	private String token;
-
-	public String getFristName() {
-		return fristName;
-	}
-
-	public void setFristName(String fristName) {
-		this.fristName = fristName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	
+	@Column(name = "UserRefKey",nullable=false)
+	private String userRefKey;
 
 	public String getBusinessName() {
 		return businessName;
@@ -53,6 +40,14 @@ public class BusinessUser extends AbstractBaseEntity{
 
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public String getEmail() {
@@ -71,12 +66,20 @@ public class BusinessUser extends AbstractBaseEntity{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getSocialMedia() {
+		return socialMedia;
+	}
+
+	public void setSocialMedia(String socialMedia) {
+		this.socialMedia = socialMedia;
 	}
 
 	public String getToken() {
@@ -86,13 +89,14 @@ public class BusinessUser extends AbstractBaseEntity{
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	/*
-	 * @Column(name = "Created_By") private String createdBy;
-	 * 
-	 * @Column(name = "Updated_By") private String updatedBy;
-	 */
+
+	public String getUserRefKey() {
+		return userRefKey;
+	}
+
+	public void setUserRefKey(String userRefKey) {
+		this.userRefKey = userRefKey;
+	}
 
 	
 }
-
