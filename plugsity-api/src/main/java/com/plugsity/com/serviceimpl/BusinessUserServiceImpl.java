@@ -1,4 +1,4 @@
-package com.plugsity.com.service;
+package com.plugsity.com.serviceimpl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +13,7 @@ import com.plugsity.com.model.BusinessUser;
 import com.plugsity.com.repository.BusinessUserRepository;
 import com.plugsity.com.request.BusinessUserDTO;
 import com.plugsity.com.response.BusinessUserResponseDTO;
+import com.plugsity.com.service.BusinessUserService;
 
 @Service
 public class BusinessUserServiceImpl implements BusinessUserService{
@@ -31,7 +32,7 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 		// TODO Auto-generated method stub
 		Map<String,Object> responseMap = new HashMap<>();
 		BusinessUserResponseDTO businessUserResponseDTO = new BusinessUserResponseDTO();
-		List<BusinessUser> businessUsers = findByBusinessNameAndEmail(businessUserDTO.getBusinessName(), businessUserDTO.getEmail());
+		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserDTO.getBusinessName(), businessUserDTO.getEmail(),businessUserDTO.getPhoneNumber());
 		if(businessUsers.isEmpty())
 		{
 		BusinessUser businessUser = new BusinessUser();
@@ -51,8 +52,8 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 		responseMap.put("Response", businessUserResponseDTO);
 		}
 		else {
-			System.out.println("BusinessName and Eamil already registered with us");
-			businessUserResponseDTO.setMessage("BusinessName and Eamil already registered with us");
+			System.out.println("BusinessName and email already registered with us");
+			businessUserResponseDTO.setMessage("BusinessName and email already registered with us");
 			businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
 			responseMap.put("Response", businessUserResponseDTO);
 		}
@@ -76,6 +77,13 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 	public List<BusinessUser> findByBusinessNameAndEmail(String name, String brand) {
 		// TODO Auto-generated method stub
 		return businessUserRepository.findByBusinessNameOrEmail(name, brand);
+	}
+
+	@Override
+	public List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,
+			String phoneNumber) {
+		// TODO Auto-generated method stub
+		return businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessName, email, phoneNumber);
 	}
 
 }

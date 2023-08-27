@@ -14,6 +14,7 @@ public interface BusinessUserService {
 	Map<String,Object> saveBusinessUser(BusinessUserDTO businessUserDTO);
     BusinessUser getBusinessUserById(long id);
     void deleteBusinessUserById(long id);
-    List<BusinessUser> findByBusinessNameAndEmail(String name, String brand);
+    List<BusinessUser> findByBusinessNameAndEmail(String businessName, String email);
+    List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,String phoneNumber);
 
 }

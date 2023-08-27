@@ -1,4 +1,4 @@
-package com.plugsity.com.service;
+package com.plugsity.com.serviceimpl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +13,9 @@ import com.plugsity.com.model.BusinessUser;
 import com.plugsity.com.request.BusinessUserDTO;
 import com.plugsity.com.request.BusinessUserInviteDTO;
 import com.plugsity.com.response.BusinessUserResponseDTO;
+import com.plugsity.com.service.BusinessUserInviteService;
 import com.plugsity.com.repository.BusinessUserInviteRepository;
+import com.plugsity.com.repository.BusinessUserRepository;
 import com.plugsity.com.model.BusinessUserInvite;
 
 @Service
@@ -21,6 +23,8 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 
 	@Autowired
 	private BusinessUserInviteRepository businessUserInviteRepository;
+	@Autowired
+	private BusinessUserRepository businessUserRepository;
 	
 	@Override
 	public List<BusinessUserInviteService> getAllBusinessUser() {
@@ -33,8 +37,19 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		// TODO Auto-generated method stub
 		Map<String,Object> responseMap = new HashMap<>();
 		BusinessUserResponseDTO businessUserResponseDTO = new BusinessUserResponseDTO();
-		//List<BusinessUser> businessUsers = findByBusinessNameAndEmail(businessUserDTO.getBusinessName(), businessUserDTO.getEmail());
-		if(true)
+		//Check the userRefKey exits or not
+		List<BusinessUser> businessUsersRefKey = businessUserRepository.findByToken(businessUserInviteDTO.getUserRefKey());
+		if(businessUsersRefKey.isEmpty())
+		{
+			System.out.println("Invited BusinessName is not registered with us.");
+			businessUserResponseDTO.setMessage("Invited BusinessName is not registered with us.");
+			businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
+			responseMap.put("Response", businessUserResponseDTO);
+			return responseMap;
+		}
+		//Check the duplicate Business User
+		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		if(businessUsers.isEmpty())
 		{
 		BusinessUserInvite businessUserInvite = new BusinessUserInvite();
 		businessUserInvite.setBusinessName(businessUserInviteDTO.getBusinessName());
@@ -48,14 +63,13 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		businessUserInvite.setCreatedBy("System"); 
 		businessUserInvite.setUpdatedBy("System");
 		this.businessUserInviteRepository.save(businessUserInvite);
-		businessUserResponseDTO.setMessage("BusinessUser saved successfully");
+		businessUserResponseDTO.setMessage("BusinessUser invited successfully");
 		businessUserResponseDTO.setStatus(HttpStatus.OK.value());
-		//businessUserResponseDTO.setToken(businessUserInvite.getToken());
 		responseMap.put("Response", businessUserResponseDTO);
 		}
 		else {
-			System.out.println("BusinessName and Eamil already registered with us");
-			businessUserResponseDTO.setMessage("BusinessName and Eamil already registered with us");
+			System.out.println("Invited BusinessName and email already registered with us");
+			businessUserResponseDTO.setMessage("Invited BusinessName and email already registered with us");
 			businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
 			responseMap.put("Response", businessUserResponseDTO);
 		}
@@ -75,9 +89,9 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 	}
 
 	@Override
-	public List<BusinessUserInviteService> findByBusinessNameAndEmail(String name, String brand) {
+	public List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,String phoneNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessName, email, phoneNumber);
 	}
 
 }

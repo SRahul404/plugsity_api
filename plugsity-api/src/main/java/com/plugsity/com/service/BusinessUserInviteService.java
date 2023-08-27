@@ -14,5 +14,5 @@ public interface BusinessUserInviteService {
 	Map<String,Object> saveInviteBusinessUser(BusinessUserInviteDTO businessUserInviteDTO);
     BusinessUser getInviteBusinessUserById(long id);
     void deleteInviteBusinessUserById(long id);
-    List<BusinessUserInviteService> findByBusinessNameAndEmail(String name, String brand);
+    List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,String phoneNumber);
 }
