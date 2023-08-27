@@ -35,16 +35,7 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserDTO.getBusinessName(), businessUserDTO.getEmail(),businessUserDTO.getPhoneNumber());
 		if(businessUsers.isEmpty())
 		{
-		BusinessUser businessUser = new BusinessUser();
-		businessUser.setFristName(businessUserDTO.getFristName());
-		businessUser.setLastName(businessUserDTO.getLastName());
-		businessUser.setBusinessName(businessUserDTO.getBusinessName());
-		businessUser.setEmail(businessUserDTO.getEmail());
-		businessUser.setMessage(businessUserDTO.getMessage());
-		businessUser.setPhoneNumber(businessUserDTO.getPhoneNumber());
-		businessUser.setToken(UUID.randomUUID().toString());
-		businessUser.setCreatedBy("System"); 
-		businessUser.setUpdatedBy("System");
+		BusinessUser businessUser =	populateBusinessUser(businessUserDTO);	
 		this.businessUserRepository.save(businessUser);
 		businessUserResponseDTO.setMessage("BusinessUser saved successfully");
 		businessUserResponseDTO.setStatus(HttpStatus.OK.value());
@@ -86,4 +77,18 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 		return businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessName, email, phoneNumber);
 	}
 
+	private BusinessUser populateBusinessUser(BusinessUserDTO businessUserDTO)
+	{
+		BusinessUser businessUser = new BusinessUser();
+		businessUser.setFristName(businessUserDTO.getFristName());
+		businessUser.setLastName(businessUserDTO.getLastName());
+		businessUser.setBusinessName(businessUserDTO.getBusinessName());
+		businessUser.setEmail(businessUserDTO.getEmail());
+		businessUser.setMessage(businessUserDTO.getMessage());
+		businessUser.setPhoneNumber(businessUserDTO.getPhoneNumber());
+		businessUser.setToken(UUID.randomUUID().toString());
+		businessUser.setCreatedBy("System"); 
+		businessUser.setUpdatedBy("System");
+		return businessUser;
+	}
 }

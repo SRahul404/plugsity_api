@@ -51,17 +51,7 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
 		if(businessUsers.isEmpty())
 		{
-		BusinessUserInvite businessUserInvite = new BusinessUserInvite();
-		businessUserInvite.setBusinessName(businessUserInviteDTO.getBusinessName());
-		businessUserInvite.setWebsite(businessUserInviteDTO.getWebsite());
-		businessUserInvite.setEmail(businessUserInviteDTO.getEmail());
-		businessUserInvite.setPhoneNumber(businessUserInviteDTO.getPhoneNumber());
-		businessUserInvite.setAddress(businessUserInviteDTO.getAddress());
-		businessUserInvite.setSocialMedia(businessUserInviteDTO.getSocialMedia());
-		businessUserInvite.setToken(UUID.randomUUID().toString());
-		businessUserInvite.setUserRefKey(businessUserInviteDTO.getUserRefKey());
-		businessUserInvite.setCreatedBy("System"); 
-		businessUserInvite.setUpdatedBy("System");
+		BusinessUserInvite businessUserInvite =	populateBusinessUserInvite(businessUserInviteDTO);
 		this.businessUserInviteRepository.save(businessUserInvite);
 		businessUserResponseDTO.setMessage("BusinessUser invited successfully");
 		businessUserResponseDTO.setStatus(HttpStatus.OK.value());
@@ -94,4 +84,19 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		return businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessName, email, phoneNumber);
 	}
 
+	private BusinessUserInvite populateBusinessUserInvite(BusinessUserInviteDTO businessUserInviteDTO)
+	{
+		BusinessUserInvite businessUserInvite = new BusinessUserInvite();
+		businessUserInvite.setBusinessName(businessUserInviteDTO.getBusinessName());
+		businessUserInvite.setWebsite(businessUserInviteDTO.getWebsite());
+		businessUserInvite.setEmail(businessUserInviteDTO.getEmail());
+		businessUserInvite.setPhoneNumber(businessUserInviteDTO.getPhoneNumber());
+		businessUserInvite.setAddress(businessUserInviteDTO.getAddress());
+		businessUserInvite.setSocialMedia(businessUserInviteDTO.getSocialMedia());
+		businessUserInvite.setToken(UUID.randomUUID().toString());
+		businessUserInvite.setUserRefKey(businessUserInviteDTO.getUserRefKey());
+		businessUserInvite.setCreatedBy("System"); 
+		businessUserInvite.setUpdatedBy("System");
+		return businessUserInvite;
+	}
 }
