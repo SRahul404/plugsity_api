@@ -1,31 +1,32 @@
-package com.plugsity.com.request;
+package com.plugsity.com.model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+import com.plugsity.com.domain.AbstractBaseEntity;
 
-public class BusinessUserDTO {
+@Entity
+@Table(name = "customer")
+public class Customer extends AbstractBaseEntity{
 
-	@NotBlank(message = "The fristName is required.")
+	@Column(name = "FirstName",nullable=false)
 	private String fristName;
 	
-	@NotBlank(message = "The lastName is required.")
+	@Column(name = "LastName",nullable=false)
 	private String lastName;
 	
-	@NotBlank(message = "The businessName is required.")
-	private String businessName;
-	
-	@NotEmpty(message = "The email is required.")
-	@Email(message = "The email is not a valid email.")
+	@Column(name = "Email",nullable=false)
 	private String email;
 	
-	@NotBlank(message = "The phoneNumber is required.")
+	@Column(name = "PhoneNumber",nullable=false)
 	private String phoneNumber;
 	
-	@NotNull(message = "Message can't be null")
+	@Column(name = "Message")
 	private String message;
+	
+	@Column(name = "CustomerToken",nullable=false)
+	private String customerToken;
 
 	public String getFristName() {
 		return fristName;
@@ -41,14 +42,6 @@ public class BusinessUserDTO {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getBusinessName() {
-		return businessName;
-	}
-
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
 	}
 
 	public String getEmail() {
@@ -74,5 +67,14 @@ public class BusinessUserDTO {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public String getCustomerToken() {
+		return customerToken;
+	}
+
+	public void setCustomerToken(String customerToken) {
+		this.customerToken = customerToken;
+	}
+	
 	
 }
