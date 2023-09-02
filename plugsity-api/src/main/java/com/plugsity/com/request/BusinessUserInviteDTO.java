@@ -3,6 +3,7 @@ package com.plugsity.com.request;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class BusinessUserInviteDTO {
 
@@ -19,13 +20,16 @@ public class BusinessUserInviteDTO {
 	@NotBlank(message = "The phoneNumber is required.")
 	private String phoneNumber;
 	
+	@NotNull(message = "Address can't be null")
 	private String address;
 	
+	@NotNull(message = "SocialMedia url can't be null")
 	private String socialMedia;
 	
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
 	
+	@NotNull(message = "Message can't be null")
 	private String message;
 
 	public String getBusinessName() {
