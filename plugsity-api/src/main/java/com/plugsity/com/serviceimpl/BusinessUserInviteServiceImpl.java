@@ -3,6 +3,7 @@ package com.plugsity.com.serviceimpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,9 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		}
 		//Check the duplicate Business User
 		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
-		if(businessUsers.isEmpty())
+		// Check the duplicate Business User Invite
+		BusinessUserInvite businessUserInviteRecord =  businessUserInviteRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		if(businessUsers.isEmpty() && Objects.nonNull(businessUserInviteRecord))
 		{
 		BusinessUserInvite businessUserInvite =	populateBusinessUserInvite(businessUserInviteDTO);
 		this.businessUserInviteRepository.save(businessUserInvite);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.plugsity.com.model.BusinessUserInvite;
 
 @Repository
-public interface BusinessUserInviteRepository extends JpaRepository<BusinessUserInvite, Long>{
+public interface BusinessUserInviteRepository extends JpaRepository<BusinessUserInvite, Long> {
 
-	
+	BusinessUserInvite findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email, String phoneNumber);
 }
