@@ -8,5 +8,6 @@ import com.plugsity.com.model.CustomerInvite;
 @Repository
 public interface CustomerInviteRepository extends JpaRepository<CustomerInvite, Long> {
 
+	CustomerInvite findByEmailOrPhoneNumber(String email,String phoneNumber);
 	
 }

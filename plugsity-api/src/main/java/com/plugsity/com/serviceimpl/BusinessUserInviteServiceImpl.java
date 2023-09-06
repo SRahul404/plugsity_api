@@ -52,7 +52,7 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
 		// Check the duplicate Business User Invite
 		BusinessUserInvite businessUserInviteRecord =  businessUserInviteRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
-		if(businessUsers.isEmpty() && Objects.nonNull(businessUserInviteRecord))
+		if(businessUsers.isEmpty() && Objects.isNull(businessUserInviteRecord))
 		{
 		BusinessUserInvite businessUserInvite =	populateBusinessUserInvite(businessUserInviteDTO);
 		this.businessUserInviteRepository.save(businessUserInvite);

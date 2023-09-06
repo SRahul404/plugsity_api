@@ -3,6 +3,7 @@ package com.plugsity.com.serviceimpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,9 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 		}
 		//Check the duplicate Customer
 		List<Customer> customers = findByEmailOrPhoneNumber(customerInviteRequestDTO.getEmail(),customerInviteRequestDTO.getPhoneNumber());
-		if(customers.isEmpty())
+		//Check duplicate for invited customer
+		CustomerInvite customerInviteCheck = customerInviteRepository.findByEmailOrPhoneNumber(customerInviteRequestDTO.getEmail(), customerInviteRequestDTO.getPhoneNumber());
+		if(customers.isEmpty() && Objects.isNull(customerInviteCheck))
 		{
 		CustomerInvite customerInvite =	populateCustomerInvite(customerInviteRequestDTO);
 		this.customerInviteRepository.save(customerInvite);
