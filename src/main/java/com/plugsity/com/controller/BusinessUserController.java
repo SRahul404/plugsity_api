@@ -6,18 +6,17 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.plugsity.com.request.BusinessUserDTO;
 import com.plugsity.com.request.BusinessUserInviteDTO;
 import com.plugsity.com.service.BusinessUserInviteService;
 import com.plugsity.com.service.BusinessUserService;
 
+
 @RestController
-@RequestMapping("/plugisty/avi/v1/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/plugisty/avi/v1")
 public class BusinessUserController {
 
 	@Autowired
