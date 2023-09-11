@@ -73,7 +73,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private Customer populateCustomer(CustomerRequestDTO customerRequestDTO)
 	{
 		Customer customer = new Customer();
-		customer.setFristName(customerRequestDTO.getFristName());
+		customer.setFirstName(customerRequestDTO.getFirstName());
 		customer.setLastName(customerRequestDTO.getLastName());
 		customer.setEmail(customerRequestDTO.getEmail());
 		customer.setMessage(customerRequestDTO.getMessage());

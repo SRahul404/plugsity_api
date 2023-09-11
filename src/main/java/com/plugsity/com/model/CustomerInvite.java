@@ -11,7 +11,7 @@ import com.plugsity.com.domain.AbstractBaseEntity;
 public class CustomerInvite extends AbstractBaseEntity{
 
 	@Column(name = "FirstName",nullable=false)
-	private String fristName;
+	private String firstName;
 	
 	@Column(name = "LastName",nullable=false)
 	private String lastName;
@@ -31,12 +31,12 @@ public class CustomerInvite extends AbstractBaseEntity{
 	@Column(name = "Token",nullable=false)
 	private String token;
 
-	public String getFristName() {
-		return fristName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFristName(String fristName) {
-		this.fristName = fristName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {

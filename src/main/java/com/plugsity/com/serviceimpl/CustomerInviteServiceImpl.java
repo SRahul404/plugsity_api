@@ -92,7 +92,7 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 	private CustomerInvite populateCustomerInvite(CustomerInviteRequestDTO customerInviteRequestDTO) {
 		
 		CustomerInvite customerInvite = new CustomerInvite();
-		customerInvite.setFristName(customerInviteRequestDTO.getFristName());
+		customerInvite.setFirstName(customerInviteRequestDTO.getFirstName());
 		customerInvite.setLastName(customerInviteRequestDTO.getLastName());
 		customerInvite.setEmail(customerInviteRequestDTO.getEmail());
 		customerInvite.setPhoneNumber(customerInviteRequestDTO.getPhoneNumber());

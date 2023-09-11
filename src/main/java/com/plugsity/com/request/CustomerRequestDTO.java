@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 
 public class CustomerRequestDTO {
 
-	@NotBlank(message = "The fristName is required.")
-	private String fristName;
+	@NotBlank(message = "The firstName is required.")
+	private String firstName;
 	
 	@NotBlank(message = "The lastName is required.")
 	private String lastName;
@@ -23,12 +23,12 @@ public class CustomerRequestDTO {
 	@NotNull(message = "Message can't be null")
 	private String message;
 
-	public String getFristName() {
-		return fristName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFristName(String fristName) {
-		this.fristName = fristName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
