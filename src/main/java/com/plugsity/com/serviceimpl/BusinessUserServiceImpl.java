@@ -80,7 +80,7 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 	private BusinessUser populateBusinessUser(BusinessUserDTO businessUserDTO)
 	{
 		BusinessUser businessUser = new BusinessUser();
-		businessUser.setFristName(businessUserDTO.getFristName());
+		businessUser.setFirstName(businessUserDTO.getFirstName());
 		businessUser.setLastName(businessUserDTO.getLastName());
 		businessUser.setBusinessName(businessUserDTO.getBusinessName());
 		businessUser.setEmail(businessUserDTO.getEmail());

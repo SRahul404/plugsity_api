@@ -31,11 +31,12 @@ public class BusinessUser extends AbstractBaseEntity{
 	@Column(name = "Token",nullable=false)
 	private String token;
 
-	public String getFristName() {
+
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFristName(String fristName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
