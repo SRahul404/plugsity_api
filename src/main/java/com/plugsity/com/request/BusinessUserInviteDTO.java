@@ -29,8 +29,8 @@ public class BusinessUserInviteDTO {
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
 	
-	@NotNull(message = "Message can't be null")
-	private String message;
+	/*@NotNull(message = "Message can't be null")
+	private String message;*/
 
 	public String getBusinessName() {
 		return businessName;
@@ -88,12 +88,12 @@ public class BusinessUserInviteDTO {
 		this.userRefKey = userRefKey;
 	}
 
-	public String getMessage() {
+	/*public String getMessage() {
 		return message;
 	}
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
+	}*/
 	
 }
