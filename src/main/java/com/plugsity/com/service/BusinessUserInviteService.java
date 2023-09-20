@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.plugsity.com.model.BusinessUser;
-import com.plugsity.com.model.BusinessUserInvite;
-import com.plugsity.com.request.BusinessUserDTO;
 import com.plugsity.com.request.BusinessUserInviteDTO;
+import com.plugsity.com.response.BusinessUserInviteResponseDTO;
 
 public interface BusinessUserInviteService {
 
 	List<BusinessUserInviteService> getAllBusinessUser();
+    List<BusinessUserInviteResponseDTO> getAllBusinessUser(String token);
 	Map<String,Object> saveInviteBusinessUser(BusinessUserInviteDTO businessUserInviteDTO);
     BusinessUser getInviteBusinessUserById(long id);
     void deleteInviteBusinessUserById(long id);

@@ -1,23 +1,17 @@
 package com.plugsity.com.serviceimpl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
+import com.plugsity.com.response.CustomerInviteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.plugsity.com.model.BusinessUser;
-import com.plugsity.com.model.BusinessUserInvite;
 import com.plugsity.com.model.Customer;
 import com.plugsity.com.model.CustomerInvite;
 import com.plugsity.com.repository.CustomerInviteRepository;
 import com.plugsity.com.repository.CustomerRepository;
 import com.plugsity.com.request.CustomerInviteRequestDTO;
-import com.plugsity.com.response.BusinessUserResponseDTO;
 import com.plugsity.com.response.CustomerResponseDTO;
 import com.plugsity.com.service.CustomerInviteService;
 
@@ -36,13 +30,26 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 	}
 
 	@Override
+	public List<CustomerInviteResponseDTO> getAllCustomers(String token) {
+
+		List<CustomerInvite> customerInvites = new ArrayList<>();
+		//Check the userRefKey exits or not
+		Customer customer = customerRepository.findByCustomerToken(token);
+		if(Objects.nonNull(customer))
+		{
+			customerInvites = customerInviteRepository.findByUserRefKey(token);
+		}
+		return populateCustomerInviteResponse(customerInvites);
+	}
+
+	@Override
 	public Map<String, Object> saveCustomerInvite(CustomerInviteRequestDTO customerInviteRequestDTO) {
 		// TODO Auto-generated method stub
 		Map<String,Object> responseMap = new HashMap<>();
 		CustomerResponseDTO customerResponseDTO = new CustomerResponseDTO();
 		//Check the userRefKey exits or not
-		List<Customer> customerRefKey = customerRepository.findByCustomerToken(customerInviteRequestDTO.getUserRefKey());
-		if(customerRefKey.isEmpty())
+		Customer customer = customerRepository.findByCustomerToken(customerInviteRequestDTO.getUserRefKey());
+		if(Objects.isNull(customer))
 		{
 			System.out.println("Invited Customer is not registered with us.");
 			customerResponseDTO.setMessage("Invited Customer is not registered with us.");
@@ -102,5 +109,26 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 		customerInvite.setCreatedBy("System"); 
 		customerInvite.setUpdatedBy("System");
 		return customerInvite;
+	}
+
+	private List<CustomerInviteResponseDTO> populateCustomerInviteResponse(List<CustomerInvite> customerInvites) {
+
+		CustomerInviteResponseDTO customerInvite = null;
+		List<CustomerInviteResponseDTO> inviteList = new ArrayList<>();
+
+		if(!customerInvites.isEmpty()) {
+			for (CustomerInvite invite : customerInvites) {
+
+				customerInvite = new CustomerInviteResponseDTO();
+				customerInvite.setFirstName(invite.getFirstName());
+				customerInvite.setLastName(invite.getLastName());
+				customerInvite.setEmail(invite.getEmail());
+				customerInvite.setPhoneNumber(invite.getPhoneNumber());
+				customerInvite.setRegisteredOn(invite.getCreatedTime());
+				customerInvite.setZipCode(invite.getZipCode());
+				inviteList.add(customerInvite);
+			}
+		}
+		return inviteList;
 	}
 }
