@@ -1,9 +1,12 @@
 package com.plugsity.com.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.plugsity.com.request.GetInfoDTO;
+import com.plugsity.com.response.BusinessUserInviteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +43,14 @@ public class BusinessUserController {
 		Map<String,Object> map = businessUserInviteService.saveInviteBusinessUser(businessUserInviteDTO);
 		 
 		return ResponseEntity.ok(map);
+	}
+
+	@GetMapping("/getInviteBusinessUsers")
+	public List<BusinessUserInviteResponseDTO> getInvitedCustomers(@Valid @RequestBody GetInfoDTO getInfoDTO) {
+
+
+		List<BusinessUserInviteResponseDTO> allBusinessUser = businessUserInviteService.getAllBusinessUser(getInfoDTO.getToken());
+
+		return allBusinessUser;
 	}
 }

@@ -5,9 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import com.plugsity.com.model.CustomerInvite;
 
+import java.util.List;
+
 @Repository
 public interface CustomerInviteRepository extends JpaRepository<CustomerInvite, Long> {
 
 	CustomerInvite findByEmailOrPhoneNumber(String email,String phoneNumber);
+
+	List<CustomerInvite> findByUserRefKey(String token);
 	
 }

@@ -1,17 +1,13 @@
 package com.plugsity.com.serviceimpl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
+import com.plugsity.com.response.BusinessUserInviteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.plugsity.com.model.BusinessUser;
-import com.plugsity.com.request.BusinessUserDTO;
 import com.plugsity.com.request.BusinessUserInviteDTO;
 import com.plugsity.com.response.BusinessUserResponseDTO;
 import com.plugsity.com.service.BusinessUserInviteService;
@@ -34,13 +30,24 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 	}
 
 	@Override
+	public List<BusinessUserInviteResponseDTO> getAllBusinessUser(String token) {
+		BusinessUser businessUser = businessUserRepository.findByToken(token);
+		List<BusinessUserInvite> businessUserInvites = new ArrayList<>();
+		if(Objects.nonNull(businessUser))
+		{
+			businessUserInvites = businessUserInviteRepository.findByUserRefKey(token);
+		}
+		return populateBusinessUserInvite(businessUserInvites);
+	}
+
+	@Override
 	public Map<String, Object> saveInviteBusinessUser(BusinessUserInviteDTO businessUserInviteDTO) {
 		// TODO Auto-generated method stub
 		Map<String,Object> responseMap = new HashMap<>();
 		BusinessUserResponseDTO businessUserResponseDTO = new BusinessUserResponseDTO();
 		//Check the userRefKey exits or not
-		List<BusinessUser> businessUsersRefKey = businessUserRepository.findByToken(businessUserInviteDTO.getUserRefKey());
-		if(businessUsersRefKey.isEmpty())
+		BusinessUser businessUser = businessUserRepository.findByToken(businessUserInviteDTO.getUserRefKey());
+		if(Objects.isNull(businessUser))
 		{
 			System.out.println("Invited BusinessName is not registered with us.");
 			businessUserResponseDTO.setMessage("Invited BusinessName is not registered with us.");
@@ -101,5 +108,25 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		businessUserInvite.setCreatedBy("System"); 
 		businessUserInvite.setUpdatedBy("System");
 		return businessUserInvite;
+	}
+
+	private List<BusinessUserInviteResponseDTO> populateBusinessUserInvite(List<BusinessUserInvite> inviteList)
+	{
+		BusinessUserInviteResponseDTO businessUserInvite = null;
+		List<BusinessUserInviteResponseDTO> responseDTOS = new ArrayList<>();
+		if(!inviteList.isEmpty()) {
+			for (BusinessUserInvite invite : inviteList) {
+				businessUserInvite = new BusinessUserInviteResponseDTO();
+				businessUserInvite.setBusinessName(invite.getBusinessName());
+				businessUserInvite.setWebsite(invite.getWebsite());
+				businessUserInvite.setEmail(invite.getEmail());
+				businessUserInvite.setPhoneNumber(invite.getPhoneNumber());
+				businessUserInvite.setAddress(invite.getAddress());
+				businessUserInvite.setSocialMedia(invite.getSocialMedia());
+				businessUserInvite.setRegisteredOn(invite.getCreatedTime());
+				responseDTOS.add(businessUserInvite);
+			}
+		}
+		return responseDTOS;
 	}
 }

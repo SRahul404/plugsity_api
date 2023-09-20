@@ -7,8 +7,10 @@ com\plugsity\com\repository\CustomerInviteRepository.class
 com\plugsity\com\request\CustomerRequestDTO.class
 com\plugsity\com\request\BusinessUserDTO.class
 com\plugsity\com\request\CustomerInviteRequestDTO.class
+com\plugsity\com\response\CustomerInviteResponseDTO.class
 com\plugsity\com\controller\BusinessUserController.class
 com\plugsity\com\model\Customer.class
+com\plugsity\com\response\BusinessUserInviteResponseDTO.class
 com\plugsity\com\service\ContactUsService.class
 com\plugsity\com\model\BusinessUser.class
 com\plugsity\com\controller\CustomerController.class
@@ -18,6 +20,7 @@ com\plugsity\com\repository\CustomerRepository.class
 com\plugsity\com\response\CustomerResponseDTO.class
 com\plugsity\com\serviceimpl\ContactUsServiceImpl.class
 com\plugsity\com\request\ContactUsRequestDTO.class
+com\plugsity\com\request\GetInfoDTO.class
 com\plugsity\com\serviceimpl\BusinessUserInviteServiceImpl.class
 com\plugsity\com\service\BusinessUserInviteService.class
 com\plugsity\com\model\CustomerInvite.class

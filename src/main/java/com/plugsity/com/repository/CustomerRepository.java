@@ -11,6 +11,5 @@ import com.plugsity.com.model.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	List<Customer> findByEmailOrPhoneNumber(String email,String phoneNumber);
-	
-	List<Customer> findByCustomerToken(String token);
+	Customer findByCustomerToken(String token);
 }
