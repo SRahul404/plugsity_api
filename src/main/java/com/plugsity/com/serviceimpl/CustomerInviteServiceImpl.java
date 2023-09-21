@@ -24,9 +24,11 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 	private CustomerInviteRepository customerInviteRepository;
 	
 	@Override
-	public List<CustomerInvite> getAllCustomers() {
+	public List<CustomerInviteResponseDTO> getAllCustomers() {
 		// TODO Auto-generated method stub
-		return null;
+		List<CustomerInvite> customerInvites;
+		customerInvites = customerInviteRepository.findAll();
+		return populateCustomerInviteResponse(customerInvites);
 	}
 
 	@Override

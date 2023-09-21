@@ -53,4 +53,13 @@ public class BusinessUserController {
 
 		return allBusinessUser;
 	}
+
+	@GetMapping("/allInviteBusinessUsers")
+	public List<BusinessUserInviteResponseDTO> addInvitedCustomers() {
+
+
+		List<BusinessUserInviteResponseDTO> allBusinessUser = businessUserInviteService.getAllBusinessUser();
+
+		return allBusinessUser;
+	}
 }

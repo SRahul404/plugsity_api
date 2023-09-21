@@ -52,4 +52,13 @@ public class CustomerController {
 
 		return allCustomers;
 	}
+
+	@GetMapping("/allInvitedCustomers")
+	public List<CustomerInviteResponseDTO> allInvitedCustomers() {
+
+
+		List<CustomerInviteResponseDTO> allCustomers = customerInviteService.getAllCustomers();
+
+		return allCustomers;
+	}
 }
