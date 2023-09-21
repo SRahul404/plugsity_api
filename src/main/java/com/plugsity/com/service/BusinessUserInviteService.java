@@ -9,7 +9,7 @@ import com.plugsity.com.response.BusinessUserInviteResponseDTO;
 
 public interface BusinessUserInviteService {
 
-	List<BusinessUserInviteService> getAllBusinessUser();
+	List<BusinessUserInviteResponseDTO> getAllBusinessUser();
     List<BusinessUserInviteResponseDTO> getAllBusinessUser(String token);
 	Map<String,Object> saveInviteBusinessUser(BusinessUserInviteDTO businessUserInviteDTO);
     BusinessUser getInviteBusinessUserById(long id);

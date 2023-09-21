@@ -10,7 +10,7 @@ import com.plugsity.com.response.CustomerInviteResponseDTO;
 
 public interface CustomerInviteService {
 
-	List<CustomerInvite> getAllCustomers();
+	List<CustomerInviteResponseDTO> getAllCustomers();
 
 	List<CustomerInviteResponseDTO> getAllCustomers(String token);
 	Map<String,Object> saveCustomerInvite(CustomerInviteRequestDTO customerInviteRequestDTO);

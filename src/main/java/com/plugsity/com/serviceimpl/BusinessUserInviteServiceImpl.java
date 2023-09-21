@@ -24,9 +24,11 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 	private BusinessUserRepository businessUserRepository;
 	
 	@Override
-	public List<BusinessUserInviteService> getAllBusinessUser() {
+	public List<BusinessUserInviteResponseDTO> getAllBusinessUser() {
 		// TODO Auto-generated method stub
-		return null;
+		List<BusinessUserInvite> businessUserInvites;
+		businessUserInvites = businessUserInviteRepository.findAll();
+		return populateBusinessUserInvite(businessUserInvites);
 	}
 
 	@Override
