@@ -1,10 +1,8 @@
 package com.plugsity.com.serviceimpl;
 
 import com.plugsity.com.model.ContactUs;
-import com.plugsity.com.model.Customer;
 import com.plugsity.com.repository.ContactUsRepository;
 import com.plugsity.com.request.ContactUsRequestDTO;
-import com.plugsity.com.request.CustomerRequestDTO;
 import com.plugsity.com.response.CustomerResponseDTO;
 import com.plugsity.com.service.ContactUsService;
 import org.springframework.beans.factory.annotation.Autowired;

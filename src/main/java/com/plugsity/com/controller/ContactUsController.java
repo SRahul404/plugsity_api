@@ -1,7 +1,6 @@
 package com.plugsity.com.controller;
 
 import com.plugsity.com.request.ContactUsRequestDTO;
-import com.plugsity.com.request.CustomerRequestDTO;
 import com.plugsity.com.service.ContactUsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

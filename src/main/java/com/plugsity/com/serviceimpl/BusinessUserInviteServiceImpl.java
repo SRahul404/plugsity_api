@@ -103,8 +103,8 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		businessUserInvite.setWebsite(businessUserInviteDTO.getWebsite());
 		businessUserInvite.setEmail(businessUserInviteDTO.getEmail());
 		businessUserInvite.setPhoneNumber(businessUserInviteDTO.getPhoneNumber());
-		businessUserInvite.setAddress(businessUserInviteDTO.getAddress());
-		businessUserInvite.setSocialMedia(businessUserInviteDTO.getSocialMedia());
+		//businessUserInvite.setAddress(businessUserInviteDTO.getAddress());
+		//businessUserInvite.setSocialMedia(businessUserInviteDTO.getSocialMedia());
 		businessUserInvite.setToken(UUID.randomUUID().toString());
 		businessUserInvite.setUserRefKey(businessUserInviteDTO.getUserRefKey());
 		businessUserInvite.setCreatedBy("System"); 
@@ -126,6 +126,7 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 				businessUserInvite.setAddress(invite.getAddress());
 				businessUserInvite.setSocialMedia(invite.getSocialMedia());
 				businessUserInvite.setRegisteredOn(invite.getCreatedTime());
+				businessUserInvite.setToken(invite.getUserRefKey());
 				responseDTOS.add(businessUserInvite);
 			}
 		}
