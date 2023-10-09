@@ -25,8 +25,8 @@ public class CustomerInviteRequestDTO {
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
 	
-	@NotNull(message = "zipCode can't be null")
-	private String zipCode;
+	/*@NotNull(message = "zipCode can't be null")
+	private String zipCode;*/
 
 	public String getFirstName() {
 		return firstName;
@@ -67,15 +67,5 @@ public class CustomerInviteRequestDTO {
 	public void setUserRefKey(String userRefKey) {
 		this.userRefKey = userRefKey;
 	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-	
-	
 
 }

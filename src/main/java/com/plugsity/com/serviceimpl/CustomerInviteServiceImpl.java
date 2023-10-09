@@ -107,7 +107,7 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 		customerInvite.setPhoneNumber(customerInviteRequestDTO.getPhoneNumber());
 		customerInvite.setUserRefKey(customerInviteRequestDTO.getUserRefKey());
 		customerInvite.setToken(UUID.randomUUID().toString());
-		customerInvite.setZipCode(customerInviteRequestDTO.getZipCode());
+		//customerInvite.setZipCode(customerInviteRequestDTO.getZipCode());
 		customerInvite.setCreatedBy("System"); 
 		customerInvite.setUpdatedBy("System");
 		return customerInvite;
@@ -128,6 +128,7 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 				customerInvite.setPhoneNumber(invite.getPhoneNumber());
 				customerInvite.setRegisteredOn(invite.getCreatedTime());
 				customerInvite.setZipCode(invite.getZipCode());
+				customerInvite.setTocken(invite.getUserRefKey());
 				inviteList.add(customerInvite);
 			}
 		}

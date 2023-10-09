@@ -12,6 +12,16 @@ public class CustomerInviteResponseDTO {
     private String zipCode;
     private Date registeredOn;
 
+    private String tocken;
+
+    public String getTocken() {
+        return tocken;
+    }
+
+    public void setTocken(String tocken) {
+        this.tocken = tocken;
+    }
+
     public String getFirstName() {
         return firstName;
     }

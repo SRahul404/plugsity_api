@@ -20,7 +20,7 @@ public class ContactUsRequestDTO {
     @NotNull(message = "Subject can't be null")
     private String subject;
 
-    @NotBlank(message = "Message is required.")
+    @NotEmpty(message = "Message is required.")
     private String message;
 
     public String getFirstName() {

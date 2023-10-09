@@ -20,11 +20,11 @@ public class BusinessUserInviteDTO {
 	@NotBlank(message = "The phoneNumber is required.")
 	private String phoneNumber;
 	
-	@NotNull(message = "Address can't be null")
+	/*@NotNull(message = "Address can't be null")
 	private String address;
 	
 	@NotNull(message = "SocialMedia url can't be null")
-	private String socialMedia;
+	private String socialMedia;*/
 	
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
@@ -64,22 +64,6 @@ public class BusinessUserInviteDTO {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getSocialMedia() {
-		return socialMedia;
-	}
-
-	public void setSocialMedia(String socialMedia) {
-		this.socialMedia = socialMedia;
-	}
-
 	public String getUserRefKey() {
 		return userRefKey;
 	}
@@ -88,12 +72,4 @@ public class BusinessUserInviteDTO {
 		this.userRefKey = userRefKey;
 	}
 
-	/*public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}*/
-	
 }
