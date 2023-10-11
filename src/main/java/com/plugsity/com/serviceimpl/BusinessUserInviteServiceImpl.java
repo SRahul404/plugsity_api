@@ -100,11 +100,8 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 	{
 		BusinessUserInvite businessUserInvite = new BusinessUserInvite();
 		businessUserInvite.setBusinessName(businessUserInviteDTO.getBusinessName());
-		businessUserInvite.setWebsite(businessUserInviteDTO.getWebsite());
 		businessUserInvite.setEmail(businessUserInviteDTO.getEmail());
 		businessUserInvite.setPhoneNumber(businessUserInviteDTO.getPhoneNumber());
-		//businessUserInvite.setAddress(businessUserInviteDTO.getAddress());
-		//businessUserInvite.setSocialMedia(businessUserInviteDTO.getSocialMedia());
 		businessUserInvite.setToken(UUID.randomUUID().toString());
 		businessUserInvite.setUserRefKey(businessUserInviteDTO.getUserRefKey());
 		businessUserInvite.setCreatedBy("System"); 
@@ -120,11 +117,8 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 			for (BusinessUserInvite invite : inviteList) {
 				businessUserInvite = new BusinessUserInviteResponseDTO();
 				businessUserInvite.setBusinessName(invite.getBusinessName());
-				businessUserInvite.setWebsite(invite.getWebsite());
 				businessUserInvite.setEmail(invite.getEmail());
 				businessUserInvite.setPhoneNumber(invite.getPhoneNumber());
-				businessUserInvite.setAddress(invite.getAddress());
-				businessUserInvite.setSocialMedia(invite.getSocialMedia());
 				businessUserInvite.setRegisteredOn(invite.getCreatedTime());
 				businessUserInvite.setToken(invite.getUserRefKey());
 				responseDTOS.add(businessUserInvite);

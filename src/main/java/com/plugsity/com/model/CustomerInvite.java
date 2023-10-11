@@ -21,10 +21,7 @@ public class CustomerInvite extends AbstractBaseEntity{
 	
 	@Column(name = "PhoneNumber",nullable=false)
 	private String phoneNumber;
-	
-	@Column(name = "ZipCode")
-	private String zipCode;
-	
+
 	@Column(name = "UserRefKey",nullable=false)
 	private String userRefKey;
 	
@@ -61,14 +58,6 @@ public class CustomerInvite extends AbstractBaseEntity{
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
 	}
 
 	public String getUserRefKey() {

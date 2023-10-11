@@ -127,7 +127,6 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 				customerInvite.setEmail(invite.getEmail());
 				customerInvite.setPhoneNumber(invite.getPhoneNumber());
 				customerInvite.setRegisteredOn(invite.getCreatedTime());
-				customerInvite.setZipCode(invite.getZipCode());
 				customerInvite.setTocken(invite.getUserRefKey());
 				inviteList.add(customerInvite);
 			}

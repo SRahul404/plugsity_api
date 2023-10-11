@@ -12,22 +12,13 @@ public class BusinessUserInvite extends AbstractBaseEntity{
 
 	@Column(name = "BusinessName",nullable=false)
 	private String businessName;
-	
-	@Column(name = "Website",nullable=false)
-	private String website;
-	
+
 	@Column(name = "Email",nullable=false)
 	private String email;
 	
 	@Column(name = "PhoneNumber",nullable=false)
 	private String phoneNumber;
-	
-	@Column(name = "Address")
-	private String address;
-	
-	@Column(name = "SocialMedia")
-	private String socialMedia;
-	
+
 	@Column(name = "Token",nullable=false)
 	private String token;
 	
@@ -40,14 +31,6 @@ public class BusinessUserInvite extends AbstractBaseEntity{
 
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
-	}
-
-	public String getWebsite() {
-		return website;
-	}
-
-	public void setWebsite(String website) {
-		this.website = website;
 	}
 
 	public String getEmail() {
@@ -64,22 +47,6 @@ public class BusinessUserInvite extends AbstractBaseEntity{
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getSocialMedia() {
-		return socialMedia;
-	}
-
-	public void setSocialMedia(String socialMedia) {
-		this.socialMedia = socialMedia;
 	}
 
 	public String getToken() {

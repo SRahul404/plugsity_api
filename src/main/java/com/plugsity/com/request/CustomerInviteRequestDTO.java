@@ -24,9 +24,6 @@ public class CustomerInviteRequestDTO {
 	
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
-	
-	/*@NotNull(message = "zipCode can't be null")
-	private String zipCode;*/
 
 	public String getFirstName() {
 		return firstName;

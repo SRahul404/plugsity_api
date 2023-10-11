@@ -9,7 +9,6 @@ public class CustomerInviteResponseDTO {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String zipCode;
     private Date registeredOn;
 
     private String tocken;
@@ -52,14 +51,6 @@ public class CustomerInviteResponseDTO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
     }
 
     public Date getRegisteredOn() {
