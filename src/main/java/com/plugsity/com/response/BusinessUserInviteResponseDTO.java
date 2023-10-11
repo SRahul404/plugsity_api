@@ -6,11 +6,9 @@ import java.util.Date;
 public class BusinessUserInviteResponseDTO {
 
     private String businessName;
-    private String website;
     private String email;
     private String phoneNumber;
-    private String address;
-    private String socialMedia;
+
     private Date registeredOn;
 
     private String token;
@@ -31,14 +29,6 @@ public class BusinessUserInviteResponseDTO {
         this.businessName = businessName;
     }
 
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -53,22 +43,6 @@ public class BusinessUserInviteResponseDTO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getSocialMedia() {
-        return socialMedia;
-    }
-
-    public void setSocialMedia(String socialMedia) {
-        this.socialMedia = socialMedia;
     }
 
     public Date getRegisteredOn() {
