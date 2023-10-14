@@ -9,5 +9,5 @@ import java.util.Map;
 public interface ContactUsService {
 
     Map<String,Object> saveContact(ContactUsRequestDTO contactUsRequestDTO);
-    ContactUs findByEmail(String email);
+    ContactUs findByEmailOrStatus(String email,String status);
 }

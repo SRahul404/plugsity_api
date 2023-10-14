@@ -25,6 +25,9 @@ public class ContactUs extends AbstractBaseEntity {
     @Column(name = "Message",nullable=false)
     private String message;
 
+    @Column(name = "status",nullable=false)
+    private String status;
+
     public String getFirstName() {
         return firstName;
     }
@@ -63,5 +66,13 @@ public class ContactUs extends AbstractBaseEntity {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

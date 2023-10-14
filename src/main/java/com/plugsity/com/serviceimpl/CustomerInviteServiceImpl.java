@@ -72,8 +72,8 @@ public class CustomerInviteServiceImpl implements CustomerInviteService{
 		responseMap.put("Response", customerResponseDTO);
 		}
 		else {
-			System.out.println("Invited Customer name and email already registered with us");
-			customerResponseDTO.setMessage("Invited Customer name and email already registered with us");
+			System.out.println("Invited Customer name and email are already registered with us");
+			customerResponseDTO.setMessage("Invited Customer name and email are already registered with us");
 			customerResponseDTO.setStatus(HttpStatus.FOUND.value());
 			responseMap.put("Response", customerResponseDTO);
 		}

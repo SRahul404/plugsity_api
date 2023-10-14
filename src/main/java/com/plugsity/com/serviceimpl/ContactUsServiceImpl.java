@@ -21,9 +21,9 @@ public class ContactUsServiceImpl implements ContactUsService {
     public Map<String, Object> saveContact(ContactUsRequestDTO contactUsRequestDTO) {
         Map<String,Object> responseMap = new HashMap<>();
         CustomerResponseDTO customerResponseDTO = new CustomerResponseDTO();
-        ContactUs contactUsDetails = findByEmail(contactUsRequestDTO.getEmail());
+        ContactUs contactUsDetails = findByEmailOrStatus(contactUsRequestDTO.getEmail(),"OPEN");
 
-        if(!Calculate48Hours(contactUsDetails))
+        if(Objects.isNull(contactUsDetails))
         {
             ContactUs contactUs =	populateContactUs(contactUsRequestDTO);
             this.contactUsRepository.save(contactUs);
@@ -32,8 +32,8 @@ public class ContactUsServiceImpl implements ContactUsService {
             responseMap.put("Response", customerResponseDTO);
         }
         else {
-            System.out.println("Only ContactUs after 48 hours");
-            customerResponseDTO.setMessage("Only ContactUs after 48 hours");
+            System.out.println("Once we've answered your previous question, you can send another.");
+            customerResponseDTO.setMessage("Once we've answered your previous question, you can send another.");
             customerResponseDTO.setStatus(HttpStatus.FOUND.value());
             responseMap.put("Response", customerResponseDTO);
         }
@@ -41,8 +41,8 @@ public class ContactUsServiceImpl implements ContactUsService {
     }
 
     @Override
-    public ContactUs findByEmail(String email) {
-        return contactUsRepository.findByEmail(email);
+    public ContactUs findByEmailOrStatus(String email,String status) {
+        return contactUsRepository.findByEmailAndStatus(email,status);
     }
 
     private ContactUs populateContactUs(ContactUsRequestDTO contactUsRequestDTO)
@@ -53,6 +53,7 @@ public class ContactUsServiceImpl implements ContactUsService {
         contactUs.setEmail(contactUsRequestDTO.getEmail());
         contactUs.setSubject(contactUsRequestDTO.getSubject());
         contactUs.setMessage(contactUsRequestDTO.getMessage());
+        contactUs.setStatus("OPEN");
         contactUs.setCreatedBy("System");
         contactUs.setUpdatedBy("System");
         return contactUs;

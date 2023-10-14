@@ -43,8 +43,8 @@ public class CustomerServiceImpl implements CustomerService {
 		responseMap.put("Response", customerResponseDTO);
 		}
 		else {
-			System.out.println("Customer email and phonenumber already registered with us");
-			customerResponseDTO.setMessage("Customer email and phonenumber already registered with us");
+			System.out.println("Customer email and phone number already registered with us");
+			customerResponseDTO.setMessage("Customer email and phone number already registered with us");
 			customerResponseDTO.setStatus(HttpStatus.FOUND.value());
 			responseMap.put("Response", customerResponseDTO);
 		}
