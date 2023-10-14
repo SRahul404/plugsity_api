@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContactUsRepository extends JpaRepository<ContactUs, Long> {
 
-    ContactUs findByEmail(String email);
+    ContactUs findByEmailAndStatus(String email,String status);
 }
