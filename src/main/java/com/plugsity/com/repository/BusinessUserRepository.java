@@ -12,6 +12,7 @@ public interface BusinessUserRepository extends JpaRepository<BusinessUser, Long
 	List<BusinessUser> findByBusinessNameOrEmail(String businessName, String email);
 
 	List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,String phoneNumber);
+	List<BusinessUser> findByBusinessNameOrPhoneNumber(String businessName, String phoneNumber);
 	
 	BusinessUser findByToken(String token);
 }

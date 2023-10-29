@@ -25,6 +25,7 @@ com\plugsity\com\serviceimpl\BusinessUserInviteServiceImpl.class
 com\plugsity\com\service\BusinessUserInviteService.class
 com\plugsity\com\model\CustomerInvite.class
 com\plugsity\com\service\CustomerService.class
+com\plugsity\com\common\CommonUtils.class
 com\plugsity\com\repository\BusinessUserRepository.class
 com\plugsity\com\model\ContactUs.class
 com\plugsity\com\PlugsityApiApplication.class

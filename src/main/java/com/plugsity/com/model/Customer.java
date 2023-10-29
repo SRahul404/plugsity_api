@@ -28,6 +28,8 @@ public class Customer extends AbstractBaseEntity{
 	@Column(name = "CustomerToken",nullable=false)
 	private String customerToken;
 
+	@Column(name = "CountryCode")
+	private String countryCode;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -75,6 +77,12 @@ public class Customer extends AbstractBaseEntity{
 	public void setCustomerToken(String customerToken) {
 		this.customerToken = customerToken;
 	}
-	
-	
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 }

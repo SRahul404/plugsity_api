@@ -15,4 +15,6 @@ public interface BusinessUserInviteService {
     BusinessUser getInviteBusinessUserById(long id);
     void deleteInviteBusinessUserById(long id);
     List<BusinessUser> findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email,String phoneNumber);
+    List<BusinessUser> findByBusinessNameOrPhoneNumber(String businessName, String phoneNumber);
+    List<BusinessUser> findByBusinessNameOrEmail(String businessName, String email);
 }

@@ -15,16 +15,17 @@ public class CustomerInviteRequestDTO {
 	@NotBlank(message = "The lastName is required.")
 	private String lastName;
 	
-	@NotEmpty(message = "The email is required.")
-	@Email(message = "The email is not a valid email.")
+	@NotNull(message = "The email is required.")
+	//@Email(message = "The email is not a valid email.")
 	private String email;
 	
-	@NotBlank(message = "The phoneNumber is required.")
+	@NotNull(message = "The phoneNumber is required.")
 	private String phoneNumber;
 	
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
 
+	private String countryCode;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -63,6 +64,14 @@ public class CustomerInviteRequestDTO {
 
 	public void setUserRefKey(String userRefKey) {
 		this.userRefKey = userRefKey;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 }

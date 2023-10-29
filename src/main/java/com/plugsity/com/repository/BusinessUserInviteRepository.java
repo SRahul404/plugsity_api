@@ -11,5 +11,7 @@ import java.util.List;
 public interface BusinessUserInviteRepository extends JpaRepository<BusinessUserInvite, Long> {
 
 	BusinessUserInvite findByBusinessNameOrEmailOrPhoneNumber(String businessName, String email, String phoneNumber);
+	BusinessUserInvite findByBusinessNameOrEmail(String businessName, String email);
+	BusinessUserInvite findByBusinessNameOrPhoneNumber(String businessName, String phoneNumber);
 	List<BusinessUserInvite> findByUserRefKey(String token);
 }

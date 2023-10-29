@@ -28,6 +28,9 @@ public class CustomerInvite extends AbstractBaseEntity{
 	@Column(name = "Token",nullable=false)
 	private String token;
 
+	@Column(name = "CountryCode")
+	private String countryCode;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -74,5 +77,13 @@ public class CustomerInvite extends AbstractBaseEntity{
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 }

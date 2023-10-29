@@ -1,6 +1,7 @@
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\model\CustomerInvite.java
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\repository\ContactUsRepository.java
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\serviceimpl\ContactUsServiceImpl.java
+D:\springboot\plugsity-api\src\main\java\com\plugsity\com\common\CommonUtils.java
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\request\CustomerInviteRequestDTO.java
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\repository\CustomerInviteRepository.java
 D:\springboot\plugsity-api\src\main\java\com\plugsity\com\request\ContactUsRequestDTO.java
