@@ -79,6 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setMessage(customerRequestDTO.getMessage());
 		customer.setPhoneNumber(customerRequestDTO.getPhoneNumber());
 		customer.setCustomerToken(UUID.randomUUID().toString());
+		customer.setCountryCode(customerRequestDTO.getCountryCode());
 		customer.setCreatedBy("System"); 
 		customer.setUpdatedBy("System");
 		return customer;

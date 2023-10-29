@@ -2,6 +2,7 @@ package com.plugsity.com.serviceimpl;
 
 import java.util.*;
 
+import com.plugsity.com.common.CommonUtils;
 import com.plugsity.com.response.BusinessUserInviteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,43 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		// TODO Auto-generated method stub
 		Map<String,Object> responseMap = new HashMap<>();
 		BusinessUserResponseDTO businessUserResponseDTO = new BusinessUserResponseDTO();
+
+		if(businessUserInviteDTO.getEmail()=="" && businessUserInviteDTO.getPhoneNumber()=="")
+		{
+			System.out.println("Both email and phone numbers can't be blank.");
+			businessUserResponseDTO.setMessage("Both email and phone numbers can't be blank.");
+			businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
+			responseMap.put("Response", businessUserResponseDTO);
+			return responseMap;
+		}
+
+		if(businessUserInviteDTO.getEmail()!="")
+		{
+			if(CommonUtils.isValid(businessUserInviteDTO.getEmail())){
+				System.out.println("correct email format");
+			}else {
+				System.out.println("incorrect email format");
+				businessUserResponseDTO.setMessage("incorrect email format");
+				businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
+				responseMap.put("Response", businessUserResponseDTO);
+				return responseMap;
+			}
+		}
+
+		if(businessUserInviteDTO.getPhoneNumber()!="")
+		{
+			if(CommonUtils.isValidPhoneNumber(businessUserInviteDTO.getPhoneNumber())){
+				System.out.println("correct phone number");
+			}else {
+				System.out.println("incorrect phone number");
+				businessUserResponseDTO.setMessage("incorrect phone number");
+				businessUserResponseDTO.setStatus(HttpStatus.FOUND.value());
+				responseMap.put("Response", businessUserResponseDTO);
+				return responseMap;
+			}
+		}
+
+
 		//Check the userRefKey exits or not
 		BusinessUser businessUser = businessUserRepository.findByToken(businessUserInviteDTO.getUserRefKey());
 		if(Objects.isNull(businessUser))
@@ -58,9 +96,13 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 			return responseMap;
 		}
 		//Check the duplicate Business User
-		List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		List<BusinessUser> businessUsers = checkDuplicateBusinessUser(businessUserInviteDTO);
+		//List<BusinessUser> businessUsers = findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+
 		// Check the duplicate Business User Invite
-		BusinessUserInvite businessUserInviteRecord =  businessUserInviteRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		BusinessUserInvite businessUserInviteRecord = checkDuplicateInviteBusinessUser(businessUserInviteDTO);
+		//BusinessUserInvite businessUserInviteRecord =  businessUserInviteRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+
 		if(businessUsers.isEmpty() && Objects.isNull(businessUserInviteRecord))
 		{
 		BusinessUserInvite businessUserInvite =	populateBusinessUserInvite(businessUserInviteDTO);
@@ -96,6 +138,16 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		return businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessName, email, phoneNumber);
 	}
 
+	@Override
+	public List<BusinessUser> findByBusinessNameOrPhoneNumber(String businessName, String phoneNumber) {
+		return null;
+	}
+
+	@Override
+	public List<BusinessUser> findByBusinessNameOrEmail(String businessName, String email) {
+		return null;
+	}
+
 	private BusinessUserInvite populateBusinessUserInvite(BusinessUserInviteDTO businessUserInviteDTO)
 	{
 		BusinessUserInvite businessUserInvite = new BusinessUserInvite();
@@ -104,6 +156,8 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 		businessUserInvite.setPhoneNumber(businessUserInviteDTO.getPhoneNumber());
 		businessUserInvite.setToken(UUID.randomUUID().toString());
 		businessUserInvite.setUserRefKey(businessUserInviteDTO.getUserRefKey());
+		businessUserInvite.setWebsite(businessUserInviteDTO.getWebsite());
+		businessUserInvite.setCountryCode(businessUserInviteDTO.getCountryCode());
 		businessUserInvite.setCreatedBy("System"); 
 		businessUserInvite.setUpdatedBy("System");
 		return businessUserInvite;
@@ -125,5 +179,52 @@ public class BusinessUserInviteServiceImpl implements BusinessUserInviteService{
 			}
 		}
 		return responseDTOS;
+	}
+
+	private BusinessUserInvite checkDuplicateInviteBusinessUser(BusinessUserInviteDTO businessUserInviteDTO)
+	{
+		BusinessUserInvite businessUserInvite = null;
+
+		if(businessUserInviteDTO.getPhoneNumber()!="" && businessUserInviteDTO.getEmail()!="")
+		{
+			businessUserInvite = businessUserInviteRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		}
+		else if (businessUserInviteDTO.getPhoneNumber()!="")
+		{
+			businessUserInvite = businessUserInviteRepository.findByBusinessNameOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getPhoneNumber());
+		}
+		else if (businessUserInviteDTO.getEmail()!="")
+		{
+			businessUserInvite = businessUserInviteRepository.findByBusinessNameOrEmail(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail());
+		}
+		else
+		{
+			return null;
+		}
+		return businessUserInvite;
+	}
+
+	private List<BusinessUser> checkDuplicateBusinessUser(BusinessUserInviteDTO businessUserInviteDTO){
+
+
+		List<BusinessUser> businessUser = new ArrayList<>();
+
+		if(businessUserInviteDTO.getPhoneNumber()!="" && businessUserInviteDTO.getEmail()!="")
+		{
+			businessUser = businessUserRepository.findByBusinessNameOrEmailOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail(),businessUserInviteDTO.getPhoneNumber());
+		}
+		else if (businessUserInviteDTO.getPhoneNumber()!="")
+		{
+			businessUser = businessUserRepository.findByBusinessNameOrPhoneNumber(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getPhoneNumber());
+		}
+		else if (businessUserInviteDTO.getEmail()!="")
+		{
+			businessUser = businessUserRepository.findByBusinessNameOrEmail(businessUserInviteDTO.getBusinessName(), businessUserInviteDTO.getEmail());
+		}
+		else
+		{
+			return businessUser;
+		}
+		return businessUser;
 	}
 }

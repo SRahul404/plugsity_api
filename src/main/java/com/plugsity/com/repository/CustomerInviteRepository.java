@@ -11,7 +11,8 @@ import java.util.List;
 public interface CustomerInviteRepository extends JpaRepository<CustomerInvite, Long> {
 
 	CustomerInvite findByEmailOrPhoneNumber(String email,String phoneNumber);
-
+	CustomerInvite findByEmail(String email);
+	CustomerInvite findByPhoneNumber(String phoneNumber);
 	List<CustomerInvite> findByUserRefKey(String token);
 	
 }

@@ -10,19 +10,20 @@ public class BusinessUserInviteDTO {
 	@NotBlank(message = "BusinessName is required.")
 	private String businessName;
 	
-	@NotBlank(message = "Website url is required.")
+	@NotNull(message = "Website url is required.")
 	private String website;
-	
-	@NotEmpty(message = "The email is required.")
-	@Email(message = "The email is not a valid email.")
+
+	@NotNull(message = "The email is required.")
+	//@Email(message = "The email is not a valid email.")
 	private String email;
 	
-	@NotBlank(message = "The phoneNumber is required.")
+	@NotNull(message = "The phoneNumber is required.")
 	private String phoneNumber;
 	
 	@NotBlank(message = "UserRefKey is required.")
 	private String userRefKey;
 
+	private String countryCode;
 	public String getBusinessName() {
 		return businessName;
 	}
@@ -63,4 +64,11 @@ public class BusinessUserInviteDTO {
 		this.userRefKey = userRefKey;
 	}
 
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 }

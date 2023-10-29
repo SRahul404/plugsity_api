@@ -87,6 +87,7 @@ public class BusinessUserServiceImpl implements BusinessUserService{
 		businessUser.setMessage(businessUserDTO.getMessage());
 		businessUser.setPhoneNumber(businessUserDTO.getPhoneNumber());
 		businessUser.setToken(UUID.randomUUID().toString());
+		businessUser.setCountryCode(businessUserDTO.getCountryCode());
 		businessUser.setCreatedBy("System"); 
 		businessUser.setUpdatedBy("System");
 		return businessUser;

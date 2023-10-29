@@ -25,6 +25,11 @@ public class BusinessUserInvite extends AbstractBaseEntity{
 	@Column(name = "UserRefKey",nullable=false)
 	private String userRefKey;
 
+	@Column(name = "Website",nullable=false)
+	private String website;
+
+	@Column(name = "CountryCode")
+	private String countryCode;
 	public String getBusinessName() {
 		return businessName;
 	}
@@ -65,5 +70,19 @@ public class BusinessUserInvite extends AbstractBaseEntity{
 		this.userRefKey = userRefKey;
 	}
 
-	
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 }

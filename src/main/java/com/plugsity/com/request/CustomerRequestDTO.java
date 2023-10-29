@@ -23,6 +23,7 @@ public class CustomerRequestDTO {
 	@NotNull(message = "Message can't be null")
 	private String message;
 
+	private String countryCode;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -61,5 +62,13 @@ public class CustomerRequestDTO {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 }
