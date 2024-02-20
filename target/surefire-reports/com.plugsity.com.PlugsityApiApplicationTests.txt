@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.plugsity.com.PlugsityApiApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.218 s - in com.plugsity.com.PlugsityApiApplicationTests
